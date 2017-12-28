@@ -1,21 +1,19 @@
 <html>
     <head>
         <script src='timer.js'></script>
-        <script src='crabbin.js'></script>
+        <script src='crabbin_sim.js'></script>
+        <script src='crabbin_ui.js'></script>
         <script>
-        console.log('here');
-
             document.addEventListener("DOMContentLoaded", function() {
-                console.log('here');
-                crabbin = new Crabbin();
-                the_p = document.getElementById('the_p')
+                crabbinSim = new CrabbinSimulator();
+                ellapsedP = document.getElementById('the_p');
+                crabbinUI = new CrabbinUI(crabbinSim, ellapsedP)
                 const timer = Timer({
                     update: (deltaTime) => {
-                        crabbin.update(deltaTime);
+                        crabbinSim.update(deltaTime);
                     },
                     render: () => {
-                        the_p.text = crabbin.elapsed;
-                        console.log(crabbin.elapsed);
+                        crabbinUI.render();
                     }
                 });
 

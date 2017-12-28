@@ -1,4 +1,4 @@
-class Crabbin {
+class CrabbinSimulator {
     constructor() {
         this.elapsed = 0;
     }

@@ -6,7 +6,6 @@ function Timer(callbacks, step) {
       frameId;
 
   function onFrame(time) {
-      console.log('onFrame');
     if (last !== null) {
       acc = acc + (time - last) / 1000;
       while (acc > inc) {
