@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src='timer.js'></script>
+        <script src='crabbin.js'></script>
+        <script>
+        console.log('here');
+
+            document.addEventListener("DOMContentLoaded", function() {
+                console.log('here');
+                crabbin = new Crabbin();
+                the_p = document.getElementById('the_p')
+                const timer = Timer({
+                    update: (deltaTime) => {
+                        crabbin.update(deltaTime);
+                    },
+                    render: () => {
+                        the_p.text = crabbin.elapsed;
+                        console.log(crabbin.elapsed);
+                    }
+                });
+
+                timer.start();
+            });
+        </script>
+    </head>
+    <body>
+        <p id='the_p'>
+        </p>
+    </body>
+</html>
