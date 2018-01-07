@@ -2,18 +2,21 @@ import {MathUtils} from './utils/math_utils.js';
 
 export default class CrabbinGame {
     constructor() {
+        this.start();
         this.showIntro = false;
         this.started = true;
-        this.ended = false;
-        this.current_job = null;
-        this.is_greenhorn = true;
     }
 
     start() {
-        this.showIntro = false;
-        this.started = true;
+        this.showIntro = true;
+        this.started = false;
         this.ended = false;
-        this.is_greenhorn = true;
+        this.currentJob = null;
+        this.isGreenhorn = true;
+        this.wallet = {
+            cash: 40.00,
+            debts: []
+        };
     }
 
     generate_jobs() {

@@ -12,6 +12,8 @@
 <script>
 import Intro from './components/Intro.vue'
 import PickJob from './components/PickJob.vue'
+import SidebarDashboard from './components/SidebarDashboard.vue'
+// import JobDashboard from './components/JobDashboard.vue'
 import CrabbinGame from './game/game_main';
 
 const game = new CrabbinGame();
@@ -20,7 +22,8 @@ export default {
     name: 'app',
     components: {
         'intro': Intro,
-        'pick-job': PickJob
+        'pick-job': PickJob,
+        'sidebar-dashboard': SidebarDashboard
     },
     data() {
         return {
@@ -33,7 +36,7 @@ export default {
             if (this.game.showIntro) {
                 return 'intro';
             } else if (this.game.started) {
-                if (this.game.current_job === null) {
+                if (this.game.currentJob === null) {
                     return 'pick-job';
                 }
             } else if (this.game.ended) {
@@ -44,7 +47,7 @@ export default {
             if (this.game.showIntro) {
                 return '';
             } else if (this.game.started) {
-                return '';
+                return 'sidebar-dashboard';
             } else if (this.game.ended) {
                 return '';
             }

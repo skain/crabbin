@@ -44,7 +44,7 @@ export default {
             this.selectedJob = job;
         },
         setSelectedJob() {
-            this.game.current_job = this.selectedJob;
+            this.game.currentJob = this.selectedJob;
         }
     },
     computed: {
