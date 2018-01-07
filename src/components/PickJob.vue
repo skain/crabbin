@@ -11,14 +11,15 @@
         </p>
         <ul>
             <li v-for='job in availableJobs' v-on:click='selectJob(job)' v-bind:class='{ selected: job === selectedJob }'>
-                <div>Boat Name: {{ job.boatName }}</div>
-                <div>Boat Size: {{ job.boatSize }}</div>
-                <div>Crew Size: {{ job.crewSize }}</div>
+                <div>Boat Name: {{ job.boat.name }}</div>
+                <div>Captain: {{ job.boat.captain }}</div>
+                <div>Boat Size: {{ job.boat.size }}</div>
+                <div>Crew Size: {{ job.boat.crewSize }}</div>
             </li>
         </ul>
         <div v-if='selectedJob'>
             <p>
-                You've selected the {{ selectedJob.boatName }}. It's a fine ship.
+                You've selected the {{ selectedJob.boat.name }}. It's a fine ship.
             </p>
             <p>
                 <button v-on:click='setSelectedJob'>Sign up!</button>
@@ -38,7 +39,7 @@ export default {
     },
     methods: {
         generate_jobs() {
-            return this.game.generate_jobs();
+            return this.game.jobManager.generate_jobs();
         },
         selectJob(job) {
             this.selectedJob = job;

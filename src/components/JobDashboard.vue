@@ -1,8 +1,15 @@
 <template>
     <div>
         <h2>Current Job</h2>
-        <div>Boat: {{ currentJob.boatName }}</div>
-        <div>Crew Size: {{ currentJob.crewSize }}</div>
+        <div v-if='currentJob'>
+            <div>Boat: {{ currentJob.boat.name }}</div>
+            <div>Captain: {{ currentJob.boat.captain }}</div>
+            <div>Size: {{ currentJob.boat.size }}</div>
+            <div>Crew Size: {{ currentJob.boat.crewSize }}</div>
+        </div>
+        <div v-else>
+            You are not currently working a job.
+        </div>
     </div>
 </template>
 
@@ -11,7 +18,7 @@ export default {
     name: 'job-dashboard',
     data() {
         return {
-            emptyJob: { boatName: 'NONE', crewSize: 0 }
+
         }
     },
     methods: {
@@ -19,8 +26,7 @@ export default {
     },
     computed: {
         currentJob() {
-            console.log(this.game.currentJob, this.emptyJob, this.test);
-            return this.game.currentJob || this.emptyJob;
+            return this.game.currentJob;
         }
     },
     props: ['game']
