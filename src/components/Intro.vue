@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h1>Welcome to Crabbin'!</h1>
-        <div>
+        <h1>Welcome to Crabbin!</h1>
+        <div class="currentMessage">
             {{ currentMessage }}
         </div>
         <div>
             <button class="pure-button" v-on:click="previous" v-bind:disabled="isFirstPage">Prev</button>
-            <button class="pure-button" v-on:click="next" v-bind:disabled="isLastPage">Next</button>
+            <button class="pure-button" v-on:click="next" v-if="!isLastPage">Next</button>
+            <button class="pure-button" v-on:click="startGame" v-if="isLastPage">Start!</button>
         </div>
     </div>
 </template>
@@ -18,8 +19,10 @@ export default {
         return {
             curPageIndex: 0,
             pages: [
-                'this is page 1',
-                'this is page 2'
+                "So you want to be a crabber, huh? It's a tough, dangerous life, but exciting as hell and potentially quite lucrative!",
+                "Well, kid, it's your life. Don't go thinkin' you're gonna just be the captain of a boat on your first day." +
+                    " First you'll have to get a job as a crewman to learn the ropes and try to earn enough money to buy a boat.",
+                "Click start below if you're ready and start your life as a greenhorn! Good luck!"
             ]
         }
     },
@@ -33,6 +36,9 @@ export default {
             if (!this.isFirstPage) {
                 this.curPageIndex--;
             }
+        },
+        startGame() {
+            this.game.start();
         }
     },
     computed: {
@@ -45,10 +51,13 @@ export default {
         currentMessage() {
             return this.pages[this.curPageIndex];
         }
-    }
+    },
+    props: ['game']
 }
 </script>
 
-<style>
-
+<style scoped>
+    .currentMessage {
+        margin: 10px 0 40px 10px;
+    }
 </style>
