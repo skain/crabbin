@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>Crabbin!</title>
+    <script src="https://unpkg.com/vue"></script>
+
+    <script type="text/x-template" id="intro-template">
+        <div>
+            <h1>Welcome to Crabbin'!</h1>
+            <div>
+                {{ currentMessage }}
+            </div>
+            <div>
+                <button class="pure-button" v-on:click="previous" v-bind:disabled="isFirstPage">Prev</button>
+                <button class="pure-button" v-on:click="next" v-bind:disabled="isLastPage">Next</button>
+            </div>
+        </div>
+    </script>
+</head>
+<body>
+    <div id="app" class='pure-g'>
+        <div id='main' class='pure-u-4-5'>
+            <intro></intro>
+        </div>
+        <div id='sidebar' class='pure-u-1-5'>
+            {{ message }}
+        </div>
+    </div>
+
+    <script>
+        Vue.component('intro', {
+            template: '#intro-template',
+            data() {
+                return {
+                    curPageIndex: 0,
+                    pages: [
+                        'this is page 1',
+                        'this is page 2'
+                    ]
+                }
+            },
+            methods: {
+                next() {
+                    if (!this.isLastPage) {
+                        this.curPageIndex++;
+                    }
+                },
+                previous() {
+                    if (!this.isFirstPage) {
+                        this.curPageIndex--;
+                    }
+                }
+            },
+            computed: {
+                isFirstPage() {
+                    return this.curPageIndex === 0;
+                },
+                isLastPage() {
+                    return this.curPageIndex === this.pages.length - 1;
+                },
+                currentMessage() {
+                    return this.pages[this.curPageIndex];
+                }
+            }
+        });
+
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+    </script>
+</body>
+</html>
