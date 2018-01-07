@@ -11,6 +11,7 @@
 
 <script>
 import Intro from './components/Intro.vue'
+import PickJob from './components/PickJob.vue'
 import CrabbinGame from './game/game_main';
 
 const game = new CrabbinGame();
@@ -18,7 +19,8 @@ const game = new CrabbinGame();
 export default {
     name: 'app',
     components: {
-        'intro': Intro
+        'intro': Intro,
+        'pick-job': PickJob
     },
     data() {
         return {
@@ -31,7 +33,9 @@ export default {
             if (this.game.showIntro) {
                 return 'intro';
             } else if (this.game.started) {
-                return '';
+                if (this.game.current_job === null) {
+                    return 'pick-job';
+                }
             } else if (this.game.ended) {
                 return '';
             }
