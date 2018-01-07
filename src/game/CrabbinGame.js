@@ -1,5 +1,6 @@
 import {MathUtils} from './utils/MathUtils.js';
 import JobManager from './JobManager';
+import WalletManager from './WalletManager';
 
 export default class CrabbinGame {
     constructor() {
@@ -15,10 +16,7 @@ export default class CrabbinGame {
         this.ended = false;
         this.currentJob = null;
         this.isGreenhorn = true;
-        this.wallet = {
-            cash: 40.00,
-            debts: []
-        };
+        this.wallet = new WalletManager(40);
     }
 
 

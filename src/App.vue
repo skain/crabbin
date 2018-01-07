@@ -13,8 +13,7 @@
 import Intro from './components/Intro.vue'
 import PickJob from './components/PickJob.vue'
 import SidebarDashboard from './components/SidebarDashboard.vue'
-// import JobDashboard from './components/JobDashboard.vue'
-import CrabbinGame from './game/game_main';
+import CrabbinGame from './game/CrabbinGame';
 
 const game = new CrabbinGame();
 
