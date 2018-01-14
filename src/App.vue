@@ -12,6 +12,7 @@
 <script>
 import Intro from './components/Intro.vue'
 import PickJob from './components/PickJob.vue'
+import PickArea from './components/PickArea.vue'
 import SidebarDashboard from './components/SidebarDashboard.vue'
 import CrabbinGame from './game/CrabbinGame';
 
@@ -22,6 +23,7 @@ export default {
     components: {
         'intro': Intro,
         'pick-job': PickJob,
+        'pick-area': PickArea,
         'sidebar-dashboard': SidebarDashboard
     },
     data() {
@@ -36,6 +38,8 @@ export default {
                     return 'intro';
                 case this.game.GameStates.PICK_JOB:
                     return 'pick-job';
+                case this.game.GameStates.PICK_AREA:
+                    return 'pick-area';
                 default:
                     return '';
             }

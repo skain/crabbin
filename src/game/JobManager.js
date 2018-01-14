@@ -1,8 +1,16 @@
 import {MathUtils} from './utils/MathUtils';
 
 export default class JobManager {
+    constructor () {
+        this.currentJob = null;
+    }
+
+    setJob(job) {
+        this.currentJob = job;
+    }
+    
     generate_jobs() {
-        var numJobs = MathUtils.get_random_int(5, 1);
+        var numJobs = MathUtils.get_random_int(1, 5);
         var jobs = [];
         for (var i = 0; i < numJobs; i++) {
             var boat = Boat.make_random_boat();
@@ -28,20 +36,20 @@ export class Boat {
     }
 
     static make_random_boat() {
-        var boatName = 'boat' + MathUtils.get_random_int(100,1);
-        var captain = 'captain' + MathUtils.get_random_int(100,1);
+        var boatName = 'boat' + MathUtils.get_random_int(1,100);
+        var captain = 'captain' + MathUtils.get_random_int(1, 100);
 
-        var sizeRoll = MathUtils.get_random_int(100, 1);
+        var sizeRoll = MathUtils.get_random_int(1, 100);
 
         var boatSize = 'Large';
-        var crewSize = MathUtils.get_random_int(32, 13);
+        var crewSize = MathUtils.get_random_int(13, 32);
 
         if (sizeRoll < 33) {
             boatSize = 'Small';
-            crewSize = MathUtils.get_random_int(6, 3);
+            crewSize = MathUtils.get_random_int(3, 6);
         } else if (sizeRoll < 66) {
             boatSize = 'Medium';
-            crewSize = MathUtils.get_random_int(12, 7);
+            crewSize = MathUtils.get_random_int(7, 12);
         }
 
         return new Boat(captain, boatName, boatSize, crewSize);

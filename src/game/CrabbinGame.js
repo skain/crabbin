@@ -1,6 +1,7 @@
 import {MathUtils} from './utils/MathUtils.js';
 import JobManager from './JobManager';
 import WalletManager from './WalletManager';
+import AreaManager from './AreaManager';
 /*
  * Pick a Job (if not owner)
  * Pick an area
@@ -19,22 +20,24 @@ import WalletManager from './WalletManager';
 export default class CrabbinGame {
     constructor() {
         this.jobManager = new JobManager();
+        this.areaManager = new AreaManager();
         this.GameStates = Object.freeze({
-            INTRO: 1,
-            PICK_JOB: 2,
-            PICK_AREA: 3,
-            CHOOSE_SET: 4,
-            SET: 5,
-            HAUL: 6
+            INTRO: 'INTRO',
+            PICK_JOB: 'PICK_JOB',
+            PICK_AREA: 'PICK_AREA',
+            CHOOSE_SET: 'CHOOSE_SET',
+            SET: 'SET',
+            HAUL: 'HAUL'
         });
 
         this.start();
     }
 
     start() {
-        this.gameState = this.GameStates.INTRO;
+        // this.gameState = this.GameStates.INTRO;
+        this.gameState = this.GameStates.PICK_JOB;
         this.ended = false;
-        this.currentJob = null;
+        this.jobManager.setJob(null);
         this.isGreenhorn = true;
         this.wallet = new WalletManager(40);
     }
@@ -66,11 +69,10 @@ export default class CrabbinGame {
 
         this.gameState = nextState;
 
-        console.log(this.gameState);
     }
 
     setJob(job) {
-        this.currentJob = job;
-        this.gameState = this.GameStates.PICK_AREA;
+        this.jobManager.setJob(job);
+        this.nextGameState();
     }
 }

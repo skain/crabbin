@@ -21,7 +21,6 @@ export default {
     name: 'wallet-dashboard',
     data() {
         return {
-            emptyJob: { boatName: 'NONE', crewSize: 0 }
         }
     },
     methods: {
