@@ -8,7 +8,7 @@ export default class JobManager {
     setJob(job) {
         this.currentJob = job;
     }
-    
+
     generate_jobs() {
         var numJobs = MathUtils.get_random_int(1, 5);
         var jobs = [];
@@ -33,6 +33,17 @@ export class Boat {
         this.name = name;
         this.size = size;
         this.crewSize = crewSize;
+        this.numPots = this._get_num_pots_for_size(size);
+    }
+
+    _get_num_pots_for_size(size) {
+        const lookup = {
+            'Large': 85,
+            'Medium': 55,
+            'Small': 35
+        };
+
+        return lookup[size];
     }
 
     static make_random_boat() {

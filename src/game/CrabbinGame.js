@@ -25,7 +25,7 @@ export default class CrabbinGame {
             INTRO: 'INTRO',
             PICK_JOB: 'PICK_JOB',
             PICK_AREA: 'PICK_AREA',
-            CHOOSE_SET: 'CHOOSE_SET',
+            CHOOSE_SETS: 'CHOOSE_SETS',
             SET: 'SET',
             HAUL: 'HAUL'
         });
@@ -52,9 +52,9 @@ export default class CrabbinGame {
                 nextState = this.GameStates.PICK_AREA;
                 break;
             case this.GameStates.PICK_AREA:
-                nextState = this.GameStates.CHOOSE_SET;
+                nextState = this.GameStates.CHOOSE_SETS;
                 break;
-            case this.GameStates.CHOOSE_SET:
+            case this.GameStates.CHOOSE_SETS:
                 nextState = this.GameStates.SET;
                 break;
             case this.GameStates.SET:

@@ -13,6 +13,7 @@
 import Intro from './components/Intro.vue'
 import PickJob from './components/PickJob.vue'
 import PickArea from './components/PickArea.vue'
+import ChooseSets from './components/ChooseSets.vue'
 import SidebarDashboard from './components/SidebarDashboard.vue'
 import CrabbinGame from './game/CrabbinGame';
 
@@ -24,6 +25,7 @@ export default {
         'intro': Intro,
         'pick-job': PickJob,
         'pick-area': PickArea,
+        'choose-sets': ChooseSets,
         'sidebar-dashboard': SidebarDashboard
     },
     data() {
@@ -40,6 +42,8 @@ export default {
                     return 'pick-job';
                 case this.game.GameStates.PICK_AREA:
                     return 'pick-area';
+                case this.game.GameStates.CHOOSE_SETS:
+                    return 'choose-sets';
                 default:
                     return '';
             }
