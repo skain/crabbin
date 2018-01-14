@@ -26,29 +26,26 @@ export default {
     },
     data() {
         return {
-            message: 'Welcome to Your Vue.js App',
             game: game
         }
     },
     computed: {
         currentMainComponent() {
-            if (this.game.showIntro) {
-                return 'intro';
-            } else if (this.game.started) {
-                if (this.game.currentJob === null) {
+            switch(this.game.gameState) {
+                case this.game.GameStates.INTRO:
+                    return 'intro';
+                case this.game.GameStates.PICK_JOB:
                     return 'pick-job';
-                }
-            } else if (this.game.ended) {
-                return '';
+                default:
+                    return '';
             }
         },
         currentSidebarComponent() {
-            if (this.game.showIntro) {
-                return '';
-            } else if (this.game.started) {
-                return 'sidebar-dashboard';
-            } else if (this.game.ended) {
-                return '';
+            switch(this.game.gameState) {
+                case this.game.GameStates.INTRO:
+                    return '';
+                default:
+                    return 'sidebar-dashboard';
             }
         }
     }

@@ -38,7 +38,7 @@ export default {
             }
         },
         startGame() {
-            this.game.start();
+            this.game.nextGameState();
         }
     },
     computed: {
