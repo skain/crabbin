@@ -28,12 +28,13 @@ export class Job {
 }
 
 export class Boat {
-    constructor(captain, name, size, crewSize) {
+    constructor(captain, name, size, crewSize, quota) {
         this.captain = captain;
         this.name = name;
         this.size = size;
         this.crewSize = crewSize;
         this.numPots = this._get_num_pots_for_size(size);
+        this.quota = quota;
     }
 
     _get_num_pots_for_size(size) {
@@ -47,6 +48,7 @@ export class Boat {
     }
 
     static make_random_boat() {
+        const quotaMod = 10000;
         var boatName = 'boat' + MathUtils.get_random_int(1,100);
         var captain = 'captain' + MathUtils.get_random_int(1, 100);
 
@@ -54,15 +56,18 @@ export class Boat {
 
         var boatSize = 'Large';
         var crewSize = MathUtils.get_random_int(13, 32);
+        var quota = MathUtils.get_random_int(80, 100) * quotaMod;
 
         if (sizeRoll < 33) {
             boatSize = 'Small';
             crewSize = MathUtils.get_random_int(3, 6);
+            quota = MathUtils.get_random_int(20, 45) * quotaMod;
         } else if (sizeRoll < 66) {
             boatSize = 'Medium';
             crewSize = MathUtils.get_random_int(7, 12);
+            quota = MathUtils.get_random_int(50, 75) * quotaMod;
         }
 
-        return new Boat(captain, boatName, boatSize, crewSize);
+        return new Boat(captain, boatName, boatSize, crewSize, quota);
     }
 }

@@ -11,10 +11,13 @@
         </p>
         <ul>
             <li v-for='job in availableJobs' v-on:click='selectJob(job)' v-bind:class='{ selected: job === selectedJob }'>
-                <div>Boat Name: {{ job.boat.name }}</div>
+                <div>Boat: {{ job.boat.name }}</div>
                 <div>Captain: {{ job.boat.captain }}</div>
-                <div>Boat Size: {{ job.boat.size }}</div>
+                <div>Size: {{ job.boat.size }}</div>
                 <div>Crew Size: {{ job.boat.crewSize }}</div>
+                <div>Pots: {{ job.boat.numPots}}</div>
+                <div>Quota: {{ job.boat.quota }}</div>
+
             </li>
         </ul>
         <div v-if='selectedJob'>

@@ -6,6 +6,8 @@
             <div>Captain: {{ currentJob.boat.captain }}</div>
             <div>Size: {{ currentJob.boat.size }}</div>
             <div>Crew Size: {{ currentJob.boat.crewSize }}</div>
+            <div>Pots: {{ currentJob.boat.numPots}}</div>
+            <div>Quota: {{ currentJob.boat.quota }}</div>
         </div>
         <div v-else>
             You are not currently working a job.
@@ -26,7 +28,7 @@ export default {
     },
     computed: {
         currentJob() {
-            return this.game.currentJob;
+            return this.game.jobManager.currentJob;
         }
     },
     props: ['game']
