@@ -26,8 +26,7 @@ export default class CrabbinGame {
             PICK_JOB: 'PICK_JOB',
             PICK_AREA: 'PICK_AREA',
             CHOOSE_SETS: 'CHOOSE_SETS',
-            SET: 'SET',
-            HAUL: 'HAUL'
+            FISH: 'FISH'
         });
 
         this.start();
@@ -55,13 +54,10 @@ export default class CrabbinGame {
                 nextState = this.GameStates.CHOOSE_SETS;
                 break;
             case this.GameStates.CHOOSE_SETS:
-                nextState = this.GameStates.SET;
+                nextState = this.GameStates.FISH;
                 break;
-            case this.GameStates.SET:
-                nextState = this.GameStates.HAUL;
-                break;
-            case this.GameStates.HAUL:
-                nextState = this.GameStates.INTRO;
+            case this.GameStates.FISH:
+                nextState = this.GameStates.PICK_JOB;
                 break;
             default:
                 throw 'Unrecognized game state: ' + this.gameState;

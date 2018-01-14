@@ -14,6 +14,7 @@ import Intro from './components/Intro.vue'
 import PickJob from './components/PickJob.vue'
 import PickArea from './components/PickArea.vue'
 import ChooseSets from './components/ChooseSets.vue'
+import Fish from './components/fishing/Fish.vue'
 import SidebarDashboard from './components/SidebarDashboard.vue'
 import CrabbinGame from './game/CrabbinGame';
 
@@ -26,7 +27,8 @@ export default {
         'pick-job': PickJob,
         'pick-area': PickArea,
         'choose-sets': ChooseSets,
-        'sidebar-dashboard': SidebarDashboard
+        'sidebar-dashboard': SidebarDashboard,
+        'fish': Fish
     },
     data() {
         return {
@@ -44,6 +46,8 @@ export default {
                     return 'pick-area';
                 case this.game.GameStates.CHOOSE_SETS:
                     return 'choose-sets';
+                case this.game.GameStates.FISH:
+                    return 'fish';
                 default:
                     return '';
             }
