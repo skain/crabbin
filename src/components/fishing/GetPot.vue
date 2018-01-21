@@ -1,20 +1,16 @@
 <template>
-    <div>
-        <h2>{{ currentFriendlyStateName }} Your Pots</h2>
-        <p v-for='stage in STAGES' v-bind:class='{ active:isCurrentGameStage(stage), stage: true }' v-if='stageIsInCurrentState(stage)'>{{ getFriendlyStageName(stage) }}</p>
+    <div id='get-pot'>
+        <h2>Get the Pot</h2>
+        <p v-if='fishingManager.isGreenhorn'>First order of business is the pot off the stack and onto the stager...</p>
+        <p><button class='pure-button' v-on:click='simulateClick'>Simulate</button></p>
     </div>
 </template>
 
 <script>
-// import PickJob from './components/PickJob.vue'
-// import PickArea from './components/PickArea.vue'
-// import ChooseSets from './components/ChooseSets.vue'
-// import SidebarDashboard from './components/SidebarDashboard.vue'
-// import CrabbinGame from './game/CrabbinGame';
 
 
 export default {
-    name: 'fishing-sidebar',
+    name: 'get-pot',
     components: {
     },
     data() {
@@ -58,6 +54,11 @@ export default {
                 default:
                     throw 'Unexpected game stage: ' + stage;
             }
+        },
+
+        simulateClick(event) {
+            console.log(this);
+            this.fishingManager.nextStage();
         }
     },
     computed: {
@@ -74,11 +75,7 @@ export default {
 </script>
 
 <style scoped>
-    #fishing-sidebar p.active {
-        background-color: #a9fcb7;
-    }
-
-    #fishing-sidebar p {
-        padding: 10px;
+    #get-pot {
+        margin: 0px 10px 0px 20px;
     }
 </style>
