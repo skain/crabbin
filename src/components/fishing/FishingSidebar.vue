@@ -78,11 +78,10 @@ export default {
 </script>
 
 <style scoped>
-    #fishing-sidebar p.active {
-        background-color: #a9fcb7;
-    }
-
-    #fishing-sidebar p {
+    p {
         padding: 10px;
+    }
+    p.active {
+        background-color: #a9fcb7;
     }
 </style>

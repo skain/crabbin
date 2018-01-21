@@ -52,7 +52,7 @@ export default class FishingManager {
                 break;
             case this.STAGES.HAUL_STACK_OR_SET:
                 this.currentState = this.STATES.SET;
-                this.currentStage = this.STAGES.SET_BAIT_POT;
+                this.currentStage = this.STAGES.SET_GET_POT;
                 break;
             default:
                 throw 'Unrecognized stage: ' + this.currentStage;

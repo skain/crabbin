@@ -3,10 +3,14 @@
         <h1>Fishing</h1>
         <div class='pure-g'>
             <div id='fishing-sidebar' class='pure-u-1-5'>
-                <component v-bind:is='currentSidebarComponent' v-bind:fishingManager='fishingManager'></component>
+                <div class='fishing-container'>
+                    <component v-bind:is='currentSidebarComponent' v-bind:fishingManager='fishingManager'></component>
+                </div>
             </div>
             <div id='fishing-main' class='pure-u-4-5'>
-                <component v-bind:is='currentMainComponent' v-bind:fishingManager='fishingManager'></component>
+                <div class='fishing-container'>
+                    <component v-bind:is='fishingManager.currentStage' v-bind:fishingManager='fishingManager'></component>
+                </div>
             </div>
         </div>
     </div>
@@ -15,7 +19,16 @@
 <script>
 import FishingManager from '../../game/fishing/FishingManager'
 import Sidebar from './FishingSidebar.vue'
-import GetPot from './GetPot.vue'
+import GetPot from './Set/GetPot.vue'
+import BaitPot from './Set/BaitPot.vue'
+import SetPot from './Set/SetPot.vue'
+import SpotBuoy from './Haul/SpotBuoy.vue'
+import ThrowHook from './Haul/ThrowHook.vue'
+import SetLine from './Haul/SetLine.vue'
+import RaiseAndEmpty from './Haul/RaiseAndEmpty.vue'
+import SortCrab from './Haul/SortCrab.vue'
+import StackOrReset from './Haul/StackOrReset.vue'
+
 
 const fishingManager = new FishingManager();
 
@@ -23,7 +36,15 @@ export default {
     name: 'fish',
     components: {
         'sidebar': Sidebar,
-        'get-pot': GetPot
+        'SET_GET_POT': GetPot,
+        'SET_BAIT_POT': BaitPot,
+        'SET_SET_POT': SetPot,
+        'HAUL_SPOT_BUOY': SpotBuoy,
+        'HAUL_THROW_HOOK': ThrowHook,
+        'HAUL_SET_LINE': SetLine,
+        'HAUL_RAISE_AND_EMPTY_POT': RaiseAndEmpty,
+        'HAUL_SORT_CRAB': SortCrab,
+        'HAUL_STACK_OR_SET': StackOrReset
     },
     created() {
             fishingManager.isGreenhorn = this.game.isGreenhorn;
@@ -34,15 +55,6 @@ export default {
         }
     },
     computed: {
-        currentMainComponent() {
-            switch(this.fishingManager.currentStage){
-                case this.fishingManager.STAGES.SET_GET_POT:
-                    return 'get-pot';
-                default:
-                    return '';
-            }
-        },
-
         currentSidebarComponent() {
             switch(this.fishingManager.currentStage){
                 default:
@@ -55,4 +67,11 @@ export default {
 </script>
 
 <style scoped>
+    div.fishing-container {
+        padding: 10px;
+    }
+
+    #fishing-sidebar div.fishing-container {
+        padding-right: 20px;
+    }
 </style>
