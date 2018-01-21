@@ -1,4 +1,5 @@
 import {MathUtils} from './utils/MathUtils';
+import BoatManager from './BoatManager';
 
 export default class JobManager {
     constructor () {
@@ -9,12 +10,17 @@ export default class JobManager {
         this.currentJob = job;
     }
 
+    generate_job() {
+        let boat = BoatManager.make_random_boat();
+        let job = new Job(boat);
+        return job;
+    }
+
     generate_jobs() {
-        var numJobs = MathUtils.get_random_int(1, 5);
-        var jobs = [];
-        for (var i = 0; i < numJobs; i++) {
-            var boat = Boat.make_random_boat();
-            var job = new Job(boat);
+        let numJobs = MathUtils.get_random_int(1, 5);
+        let jobs = [];
+        for (let i = 0; i < numJobs; i++) {
+            let job = this.generate_job();
             jobs.push(job);
         }
         return jobs;
@@ -24,50 +30,5 @@ export default class JobManager {
 export class Job {
     constructor(boat) {
         this.boat = boat;
-    }
-}
-
-export class Boat {
-    constructor(captain, name, size, crewSize, quota) {
-        this.captain = captain;
-        this.name = name;
-        this.size = size;
-        this.crewSize = crewSize;
-        this.numPots = this._get_num_pots_for_size(size);
-        this.quota = quota;
-    }
-
-    _get_num_pots_for_size(size) {
-        const lookup = {
-            'Large': 85,
-            'Medium': 55,
-            'Small': 35
-        };
-
-        return lookup[size];
-    }
-
-    static make_random_boat() {
-        const quotaMod = 10000;
-        var boatName = 'boat' + MathUtils.get_random_int(1,100);
-        var captain = 'captain' + MathUtils.get_random_int(1, 100);
-
-        var sizeRoll = MathUtils.get_random_int(1, 100);
-
-        var boatSize = 'Large';
-        var crewSize = MathUtils.get_random_int(13, 32);
-        var quota = MathUtils.get_random_int(80, 100) * quotaMod;
-
-        if (sizeRoll < 33) {
-            boatSize = 'Small';
-            crewSize = MathUtils.get_random_int(3, 6);
-            quota = MathUtils.get_random_int(20, 45) * quotaMod;
-        } else if (sizeRoll < 66) {
-            boatSize = 'Medium';
-            crewSize = MathUtils.get_random_int(7, 12);
-            quota = MathUtils.get_random_int(50, 75) * quotaMod;
-        }
-
-        return new Boat(captain, boatName, boatSize, crewSize, quota);
     }
 }

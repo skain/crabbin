@@ -1,5 +1,5 @@
 function Timer(callbacks, step) {
-  var last = 0,
+  let last = 0,
       acc = 0,
       tick = 0,
       inc = step || 1/120,

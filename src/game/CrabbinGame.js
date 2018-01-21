@@ -39,10 +39,16 @@ export default class CrabbinGame {
         this.jobManager.setJob(null);
         this.isGreenhorn = true;
         this.wallet = new WalletManager(40);
+        this._setDebugGameState();
+    }
+
+    _setDebugGameState() {
+        this.gameState = this.GameStates.FISH;
+        this.jobManager.setJob(this.jobManager.generate_job());
     }
 
     nextGameState() {
-        var nextState = null;
+        let nextState = null;
         switch (this.gameState) {
             case this.GameStates.INTRO:
                 nextState = this.GameStates.PICK_JOB;
