@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         isCurrentGameStage(stage) {
-            return stage ===  this.fishingManager.currentStage;
+            return stage ===  this.currentStage;
         },
 
         stageIsInCurrentState(stage){
@@ -68,6 +68,10 @@ export default {
         currentFriendlyStateName(){
             return this.getFriendlyStateName(this.fishingManager.currentState);
         },
+
+        currentStage() {
+            return this.fishingManager.currentStage;
+        }
     },
     props: ['fishingManager']
 }

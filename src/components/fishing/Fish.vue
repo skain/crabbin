@@ -17,6 +17,7 @@ import FishingManager from '../../game/fishing/FishingManager'
 import Sidebar from './FishingSidebar.vue'
 import GetPot from './GetPot.vue'
 
+const fishingManager = new FishingManager();
 
 export default {
     name: 'fish',
@@ -25,15 +26,15 @@ export default {
         'get-pot': GetPot
     },
     created() {
-            this.fishingManager = new FishingManager(this.game.isGreenhorn);
+            fishingManager.isGreenhorn = this.game.isGreenhorn;
     },
     data() {
         return {
+            fishingManager: fishingManager
         }
     },
     computed: {
         currentMainComponent() {
-            console.log('here');
             switch(this.fishingManager.currentStage){
                 case this.fishingManager.STAGES.SET_GET_POT:
                     return 'get-pot';

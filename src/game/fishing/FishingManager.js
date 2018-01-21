@@ -24,7 +24,6 @@ export default class FishingManager {
     }
 
     nextStage() {
-        console.log(this.currentStage);
         switch(this.currentStage){
             case this.STAGES.SET_GET_POT:
                 this.currentStage = this.STAGES.SET_BAIT_POT;
@@ -58,6 +57,5 @@ export default class FishingManager {
             default:
                 throw 'Unrecognized stage: ' + this.currentStage;
         }
-        console.log(this.currentStage);
     }
 }
